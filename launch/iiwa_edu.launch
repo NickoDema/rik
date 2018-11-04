@@ -1,0 +1,15 @@
+<launch>
+  <!-- <include file="$(find kuka_lbr_iiwa_support)/launch/load_lbr_iiwa_14_r820.launch" />-->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find iiwa)/urdf/iiwa_r820_DH.xacro' prefix:=test " />
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="true" />
+    <rosparam param="source_list">[arm_state]</rosparam>
+  </node>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find iiwa)/config/kuka_iiwa.rviz" required="true"/>
+
+  <node pkg="iiwa" type="targets.py"  name="interactive_targets" respawn="true" respawn_delay="20" output="screen"/>
+</launch>
