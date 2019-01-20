@@ -7,13 +7,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/visual/base_link.dae" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/visual/base_link.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/collision/base_link.stl" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/collision/base_link.stl" />
         </geometry>
       </collision>
     </link>
@@ -22,13 +22,13 @@
       <visual>
         <origin xyz="0 -0.36 0" rpy="-1.5708 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/visual/link_1.dae" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/visual/link_1.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 -0.36 0" rpy="-1.5708 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/collision/link_1.stl" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/collision/link_1.stl" />
         </geometry>
       </collision>
     </link>
@@ -37,13 +37,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/visual/link_2.dae" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/visual/link_2.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/collision/link_2.stl" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/collision/link_2.stl" />
         </geometry>
       </collision>
     </link>
@@ -52,13 +52,13 @@
       <visual>
         <origin xyz="0 -0.42 0" rpy="-1.5708 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/visual/link_3.dae" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/visual/link_3.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 -0.42 0" rpy="-1.5708 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/collision/link_3.stl" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/collision/link_3.stl" />
         </geometry>
       </collision>
     </link>
@@ -67,13 +67,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/visual/link_4.dae" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/visual/link_4.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/collision/link_4.stl" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/collision/link_4.stl" />
         </geometry>
       </collision>
     </link>
@@ -82,13 +82,13 @@
       <visual>
         <origin xyz="0 -0.4 0" rpy="-1.5708 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/visual/link_5.dae" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/visual/link_5.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 -0.4 0" rpy="-1.5708 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/collision/link_5.stl" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/collision/link_5.stl" />
         </geometry>
       </collision>
     </link>
@@ -97,13 +97,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/visual/link_6.dae" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/visual/link_6.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/collision/link_6.stl" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/collision/link_6.stl" />
         </geometry>
       </collision>
     </link>
@@ -113,13 +113,13 @@
       <visual>
         <origin xyz="0 0 -0.126" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/visual/link_7.dae" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/visual/link_7.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 -0.126" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://iiwa/meshes/iiwa_r820/collision/link_7.stl" />
+          <mesh filename="package://rik/LBR/meshes/iiwa_r820/collision/link_7.stl" />
         </geometry>
       </collision>
     </link>
@@ -140,7 +140,7 @@
     </joint>
 
     <joint name="${prefix}iiwa_j2" type="revolute">
-      <origin xyz="-0.00043624 0 0" rpy="-1.5708 0 0" />
+      <origin xyz="0 0 0" rpy="-1.5708 0 0" />
       <parent link="${prefix}iiwa_l1" />
       <child link="${prefix}iiwa_l2" />
       <axis xyz="0 -1 0" />

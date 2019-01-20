@@ -52,7 +52,7 @@ Visualization Manager:
       Plane Cell Count: 6
       Reference Frame: iiwa_base_link
       Value: true
-    - Alpha: 0.600000024
+    - Alpha: 0.300000012
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -125,32 +125,18 @@ Visualization Manager:
           Value: true
         base_link:
           Value: true
-        fr0:
-          Value: true
-        fr1:
-          Value: true
-        fr2:
-          Value: true
-        fr3:
-          Value: true
-        fr4:
-          Value: true
-        fr5:
-          Value: true
-        fr6:
-          Value: true
         iiwa_base_link:
           Value: true
         iiwa_l1:
-          Value: false
+          Value: true
         iiwa_l2:
           Value: false
         iiwa_l3:
-          Value: false
+          Value: true
         iiwa_l4:
           Value: false
         iiwa_l5:
-          Value: false
+          Value: true
         iiwa_l6:
           Value: false
         tool0:
@@ -167,20 +153,7 @@ Visualization Manager:
           base:
             {}
           base_link:
-            fr0:
-              {}
-            fr1:
-              {}
-            fr2:
-              {}
-            fr3:
-              {}
-            fr4:
-              {}
-            fr5:
-              {}
-            fr6:
-              {}
+            {}
           iiwa_l1:
             iiwa_l2:
               iiwa_l3:
@@ -292,7 +265,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.70070815
+      Distance: 1.65208042
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
@@ -307,10 +280,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.824795604
+      Pitch: 0.669795334
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.64004564
+      Yaw: 2.00186372
     Saved: ~
 Window Geometry:
   Displays:

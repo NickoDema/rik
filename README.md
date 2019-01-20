@@ -1,3 +1,7 @@
+## RIK - Reaching Inverse Kinematics
+
+Inverse kinematics 
+
 ## links
 
 rviz visualization dev:
