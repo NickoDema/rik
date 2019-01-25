@@ -10,7 +10,7 @@ from geometry_msgs.msg import Point
 from geometry_msgs.msg import Pose
 from geometry_msgs.msg import Quaternion
 import geometry_msgs.msg
-from tf.broadcaster import TransformBroadcaster
+from tf2_ros import TransformBroadcaster
 import tf
 
 from random import random
@@ -45,7 +45,38 @@ def frameCallback( msg ):
               markers_pose['tool-target'].orientation.w]
 
         # broadcast target frame  into TF
-        br.sendTransform( mp, mq, rospy.Time.now(), 'tool_target', 'iiwa_base_link' )
+        t1 = geometry_msgs.msg.TransformStamped()
+
+        t1.header.stamp = rospy.Time.now()
+        t1.header.frame_id = "iiwa_base_link"
+        t1.child_frame_id = 'test1'
+        t1.transform.translation.x = mp[0]+0.3
+        t1.transform.translation.y = mp[1]+0.3
+        t1.transform.translation.z = mp[2]
+        t1.transform.rotation.x = mq[0]
+        t1.transform.rotation.y = mq[1]
+        t1.transform.rotation.z = mq[2]
+        t1.transform.rotation.w = mq[3]
+
+        t2 = geometry_msgs.msg.TransformStamped()
+
+        t2.header.stamp = rospy.Time.now()
+        t2.header.frame_id = "iiwa_base_link"
+        t2.child_frame_id = 'test2'
+        t2.transform.translation.x = mp[0]+0.6
+        t2.transform.translation.y = mp[1]+0.6
+        t2.transform.translation.z = mp[2]
+        t2.transform.rotation.x = mq[0]
+        t2.transform.rotation.y = mq[1]
+        t2.transform.rotation.z = mq[2]
+        t2.transform.rotation.w = mq[3]
+
+        ts=[]
+
+        ts.append(t1)
+        ts.append(t2)
+
+        br.sendTransform(ts)# mp, mq, rospy.Time.now(), 'tool_target', 'iiwa_base_link' )
         # t_tar.header.stamp = rospy.Time.now()
         # t_tar.header.frame_id = 'iiwa_base_link'
         # t_tar.child_frame_id = 'tool_target'

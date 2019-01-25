@@ -1,14 +1,16 @@
 ## RIK - Reaching Inverse Kinematics
 
-Inverse kinematics 
+Inverse kinematic algorithm for any kinematic chains (by positions, velocities, accelerations).
 
-## links
+![minimal case](https://github.com/Ram2301/rik/tree/master/docs/pics/9dof.png)
+
+### links
 
 rviz visualization dev:
 
     http://docs.ros.org/api/visualization_msgs/html/index-msg.html
     http://docs.ros.org/jade/api/interactive_markers/html/namespaceinteractive__markers.html
 
-## deps
+### deps
 
     python -m pip install --user terminaltables

@@ -20,6 +20,44 @@ import tf
 
 from terminaltables import SingleTable
 
+
+class Transformation():
+    class Translation():
+        def __init__(self):
+            self.x = 0
+            self.y = 0
+            self.z = 0
+
+    class Rotation():
+        def __init__(self):
+            self.x = 0
+            self.y = 0
+            self.z = 0
+            self.w = 1
+
+class Joint():
+    def __init__(self):
+        self.name = ""
+        self.type = ""                  # r for revolute | p for prismatic
+        self.parent_frame = ""
+        self.child_frame  = ""
+        self.
+
+"""
+Class RobotState stores full robot's state (frame transformations,
+current joint coordinates, speeds, accelerations etc)
+"""
+class RobotState():
+
+
+
+
+    def __init__(self):
+        self.joint_num = None
+        self.joints = []
+
+
+
 class kinematic_server():
     def __init__(self, topic_name):
         rospy.init_node(topic_name, anonymous=True)
@@ -130,7 +168,7 @@ class kinematic_server():
     #         return -1
     #     print(pos)
     #     ##########################
-    # 
+    #
     #     return xyz, qtn, rpy, H
 
     def hello(self):

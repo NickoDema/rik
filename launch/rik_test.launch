@@ -1,8 +1,8 @@
 <launch>
-  <!-- <include file="$(find kuka_lbr_iiwa_support)/launch/load_lbr_iiwa_14_r820.launch" />-->
-  <!--<param name="robot_description" command="$(find xacro)/xacro.py '$(find iiwa)/urdf/iiwa_r820_DH.xacro' prefix:=test " />
+  <include file="$(find kuka_lbr_iiwa_support)/launch/load_lbr_iiwa_14_r820.launch" />
+  <param name="iiwa_description" command="$(find xacro)/xacro.py '$(find iiwa)/urdf/iiwa_r820_DH.xacro'" />
 
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+  <!--<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <param name="use_gui" value="true" />
     <rosparam param="source_list">[arm_state]</rosparam>
   </node>
