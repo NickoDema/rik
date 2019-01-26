@@ -2,7 +2,7 @@
 
 Inverse kinematic algorithm for any kinematic chains (by positions, velocities, accelerations).
 
-![minimal case](https://github.com/Ram2301/rik/tree/master/docs/pics/9dof.png)
+![minimal case](https://github.com/Ram2301/rik/blob/master/docs/pics/9dof.png)
 
 ### links
 
