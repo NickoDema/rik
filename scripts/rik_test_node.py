@@ -10,21 +10,37 @@
 import os, sys
 import rospy, tf, tf2_ros
 
-# from geometry_msgs.msg import Twist
-# from std_msgs.msg import String
+from tf2_ros import TransformBroadcaster
+
+from geometry_msgs.msg import Point
+from geometry_msgs.msg import Pose
+from geometry_msgs.msg import Quaternion
+from geometry_msgs.msg import TransformStamped
+
 #from tf2_msgs.msg import TFMessage
-
-# add include directory to the system path
-# dpath = os.path.dirname(os.path.realpath(__file__))
-# sys.path.append(dpath + "/../include")
-#print '\n'.join(sys.path)
-
-# from iiwa_modules import iiwa_kinematics
 
 import rik
 
 
 if __name__ == '__main__':
-    iiwa = rik.kinematics.kinematic_server('iiwa')
-    iiwa.hello()
-    rik.hello()
+    rospy.init_node("rik")
+    robots = []
+
+    descriptions = rospy.get_param('~descriptions', None)
+    if descriptions is None:
+        rospy.logerr('[RIK]: There is no \"descriptions\" parameter')
+        exit()
+
+    for description in descriptions:
+        name =  description['name']
+        dtype = description['dtype']
+        data = rospy.get_param(description['data'], None)
+        if data is None:
+            rospy.logwarn('[RIK]: There is no description for ', name, ' ')
+            continue
+        R = rik.Robot(name)
+        if dtype == 'urdf':
+            R.init_from_urdf(data)
+        robots.append(rik.Robot())
+    #Testy = rik.Robot(description)
+    rospy.spin()
