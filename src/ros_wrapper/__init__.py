@@ -11,5 +11,4 @@ RIK module description TODO!
 
 ## python 2.7
 
-from kinematics import *
-from parsers import *
+from ros_wrapper import *

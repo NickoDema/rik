@@ -5,11 +5,15 @@
 ##           By: Nikoaly Dema
 ##        Email: ndema2301@gmail.com
 ##
-##   Module discription TODO!
+##   Within Reaching Inverse Kinematics algorithm the full robot kinematic
+## chain is represented as a directed graph.
+## TODO Full description
 
 ## python 2.7
 
 from math import pi
+
+from rik.parsers import urdf_to_model
 
 # https://github.com/ros/geometry/blob/indigo-devel/tf/src/tf/transformations.py
 import tf.transformations as tf
@@ -32,13 +36,28 @@ import tf.transformations as tf
 #             self.w = 1
 
 
-# Class Joint stores current joint coordinate, velocity, acceleration,
-# constant parent -> child transformations, type, name, etc
+def fk(state):
+    pass
+
+def pos(state, targets):
+    pass
+
+def vel(state, targets):
+    pass
+
+def acc(state, targets):
+    pass
+
+
+#   Class Joint stores current joint coordinate, velocity, acceleration
+# in a configuration space, full parent -> child transformation, joint
+# type, name, etc
 #
-# Full transformation H between parent and child links is generally presented as:
-
+#   Full transformation H between parent and child links is generally
+# presented as:
+#
 #    H = Hb * Hj * Ha
-
+#
 # Special cases: For URDF Ha is equal to I.
 #                For Denavit-Hartenberg (DH) convention Hb is equal to I
 class Joint():
@@ -55,35 +74,123 @@ class Joint():
 
     def __init__(self):
         self.name   = ""
-        self.type   = ""          # r for revolute | p for prismatic
-        self.parent = ""
-        self.child  = ""
+        self.type   = ""          # p - prismatic | r - revolute
+                                  # fl - floating | f - fixed
+
+        self.parent_link  = ""
+        self.child_link   = ""
+        # self.joints_before = []
+        # self.joints_after  = []
 
         self.Hb = None          # Transformation before J
         self.Hj = None          # Transformation by J
         self.Ha = None          # Transformation after J | equal to I in urdf
 
-        self.J_pos = 0
-        self.J_vel = 0
-        self.J_acc = 0
-        self.J_lim = self.Limits()
+        self.pos = 0
+        self.vel = 0
+        self.acc = 0
+        self.lim = self.Limits()
 
-# Class RobotState stores full robot joints state
+#   All pose, velocity, acceleration values for Target and Node classes are
+# expressed relative to the base coordinate system.
+class Target():
+    def __init__(self):
+        self.name = ""
+        self.priority = 1               # priority
+        self.pos = None
+        self.vel = None
+        self.acc = None
+
+    def set_priority(self, priority):
+        self.priority = priority
+
+#   If the frame has no parent in a description (urdf for example) it will be
+# initialized as a fixed
+class Node():
+
+    def __init__(self):
+        self.name = ""
+        self.type = 0                   # 1 for fixed | 0 for free
+        self.target = None
+        self.branch = None
+        self.pos = None
+        self.vel = None
+        self.acc = None
+        self.parent_frames = []
+        self.child_frames  = []
+
+    def set_fixed(self):
+        self.type = 1
+
+    def set_free(self):
+        self.type = 0
+
+    def set_target(self):
+        pass
+
+    def branch(self):
+        return self.branch
+
+#   Branch object is a set consisted of nodes. Branch starts and ends by nodes
+# with more then one parents or childs or by nodes which has no parent or child.
+#   Branches with common node is siblings.
+class Branch():
+    def __init__(self):
+        self.nodes = {}
+        self.siblings = {}
+
+    def has_target(self):
+        pass
+
+    #   Return Loop objects in which this branch is used. None otherwise.
+    def in_loop(self):
+        pass
+
+#   If two or more siblings has common child frame they form a Loop.
+class Loop():
+    def __init__(self):
+        pass
+
+# Class Robot stores full robot state
 class Robot():
 
     def __init__(self, name = None):
-        self.joint_num = None
-        self.joints = []
         self.name = name
+        self.inited = False
+        # self.joint_num = 0
+        self.frame_num = 0
+
+        self.joints  = {}
+        self.nodes   = {}
+        self.targets = {}                 # {"name" : ik_order, .. }
+
+    def add_node(self, node):
+        pass
+
+    def add_joint(self, joint):
+        pass
 
     def set_joints(self, joints_state):
         pass
 
+    def add_target(self, target):
+        pass
+
+    #   URDF uses a tree structure to represent robot kinematics, which does
+    # not permit closed loops
     def init_from_urdf(self, urdf):
-        print(urdf)
+        robot_model = urdf_to_model(urdf)
+        print(robot_model)
+
+    def init_from_urdf2(self, urdf2):
+        print(urdf2)
+
+    def init_from_sdf(self, sdf):
+        print(sdf)
 
     def init_from_DH(self, dh):
         pass
+
 
 
 # # Base Robot class
@@ -203,18 +310,6 @@ class Robot():
 #
 #     def spin(self):
 
-
-def fk(state):
-    pass
-
-def pos(state, targets):
-    pass
-
-def vel(state, targets):
-    pass
-
-def acc(state, targets):
-    pass
 
 def hello():
     print('hello_func')

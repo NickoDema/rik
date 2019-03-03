@@ -431,14 +431,14 @@
 
     <!-- ROS testy_base_link to KUKA $ROBROOT coordinate system transform -->
     <link name="base" />
-    <joint name="testy_base_link-base" type="fixed">
+    <joint name="testy_base_link->base" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <parent link="testy_base_link"/>
       <child link="base"/>
     </joint>
 
     <link name="base_link" />
-    <joint name="base_link-testy_base_link" type="fixed">
+    <joint name="base_link->testy_base_link" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <parent link="testy_base_link"/>
       <child link="base_link"/>
