@@ -18,6 +18,8 @@ from rik.parsers import urdf_to_model
 # https://github.com/ros/geometry/blob/indigo-devel/tf/src/tf/transformations.py
 import tf.transformations as tf
 
+# just for pretty printing of parsed model
+import pprint
 #from terminaltables import SingleTable
 
 
@@ -91,6 +93,10 @@ class Joint():
         self.acc = 0
         self.lim = self.Limits()
 
+    def set_name(self, name):
+        self.name = name
+
+
 #   All pose, velocity, acceleration values for Target and Node classes are
 # expressed relative to the base coordinate system.
 class Target():
@@ -125,6 +131,9 @@ class Node():
     def set_free(self):
         self.type = 0
 
+    def set_name(self, name):
+        self.name = name
+
     def set_target(self):
         pass
 
@@ -154,7 +163,7 @@ class Loop():
 # Class Robot stores full robot state
 class Robot():
 
-    def __init__(self, name = None):
+    def __init__(self, name = None, log = False):
         self.name = name
         self.inited = False
         # self.joint_num = 0
@@ -163,6 +172,8 @@ class Robot():
         self.joints  = {}
         self.nodes   = {}
         self.targets = {}                 # {"name" : ik_order, .. }
+
+        self.log = log
 
     def add_node(self, node):
         pass
@@ -180,7 +191,23 @@ class Robot():
     # not permit closed loops
     def init_from_urdf(self, urdf):
         robot_model = urdf_to_model(urdf)
-        print(robot_model)
+        if self.log is True:
+            pp = pprint.PrettyPrinter(indent=2)
+            pp.pprint(robot_model)
+
+        links = robot_model['links']
+        joints = robot_model['joints']
+        # TODO errors!
+        for link_name in links:
+            node = Node()
+            node.set_name(link_name)
+            self.nodes.update({link_name: node})
+        #print(self.nodes)
+
+        for joint_name in joints:
+            joint = Joint()
+            joint.set_name(joint_name)
+            self.nodes.update({link: node})
 
     def init_from_urdf2(self, urdf2):
         print(urdf2)

@@ -29,6 +29,8 @@ class RikRosWrapper():
         rospy.init_node("rik")
         robots = []
 
+        rospy.get_param('log', False)
+
         descriptions = rospy.get_param(description_param_name, None)
         if descriptions is None:
             rospy.logerr('[RIK]: There is no \"descriptions\" parameter')
@@ -41,7 +43,7 @@ class RikRosWrapper():
             if data is None:
                 rospy.logwarn('[RIK]: There is no description for ', name, ' ')
                 continue
-            R = rik.Robot(name)
+            R = rik.Robot(name, True)
             if dtype == 'urdf':
                 R.init_from_urdf(data)
                 robots.append(R)

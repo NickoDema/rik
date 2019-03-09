@@ -10,6 +10,8 @@
       [ { name: 't',  dtype: 'urdf', data: 'testy_description' },
         { name: 't2', dtype: 'urdf', data: 'testy2_description' } ]
     </rosparam>
+    <!-- <rosparam file="$(find rik)/config/robot_descriptions.yaml" command="load" /> -->
+    <rosparam file="$(find rik)/config/rik.yaml" command="load" />
     <!-- <param name="use_gui" value="true" /> -->
     <!-- <rosparam param="source_list">[arm_state]</rosparam> -->
   </node>

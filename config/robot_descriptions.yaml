@@ -1,0 +1,2 @@
+descriptions2: [ { name: 't',  dtype: 'urdf', data: 'testy_description' },
+                { name: 't2', dtype: 'urdf', data: 'testy2_description' } ]
