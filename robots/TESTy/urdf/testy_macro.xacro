@@ -312,7 +312,7 @@
     </joint>
 
     <joint name="testy_l1->testy_j2_l" type="revolute">
-      <origin xyz="0 0 0.26" rpy="-${pi/2} 0 0" />
+      <origin xyz="0 0 0.26" rpy="-${pi/2} 0.1 0.3" />
       <parent link="testy_l1" />
       <child link="testy_j2_l" />
       <axis xyz="0 0 1" />

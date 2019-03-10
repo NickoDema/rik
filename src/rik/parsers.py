@@ -81,7 +81,7 @@ def urdf_to_model(urdf):
                         jvelocity = float(jlimit.getAttribute('velocity'))
                         limit.update({'velocity': jvelocity})
                 except:
-                    rospy.logwarn("%s is not fixed, nor continuous, but limits are not specified!" % name)
+                    print(jname, " is not fixed, nor continuous, but limits are not specified!")
 
                 jdata.update({'limit': limit})
 

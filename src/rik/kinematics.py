@@ -16,6 +16,7 @@ from math import pi
 from rik.parsers import urdf_to_model
 
 # https://github.com/ros/geometry/blob/indigo-devel/tf/src/tf/transformations.py
+# first character : rotations are applied to ‘s’tatic or ‘r’otating frame
 import tf.transformations as tf
 
 # just for pretty printing of parsed model
@@ -93,9 +94,6 @@ class Joint():
         self.acc = 0
         self.lim = self.Limits()
 
-    def set_name(self, name):
-        self.name = name
-
 
 #   All pose, velocity, acceleration values for Target and Node classes are
 # expressed relative to the base coordinate system.
@@ -130,9 +128,6 @@ class Node():
 
     def set_free(self):
         self.type = 0
-
-    def set_name(self, name):
-        self.name = name
 
     def set_target(self):
         pass
@@ -176,7 +171,13 @@ class Robot():
         self.log = log
 
     def add_node(self, node):
-        pass
+        self.nodes.update({node.name: node})
+
+    def get_node(self, name):
+        if name in self.nodes:
+            return self.nodes[name]
+        else:
+            return None
 
     def add_joint(self, joint):
         pass
@@ -197,16 +198,56 @@ class Robot():
 
         links = robot_model['links']
         joints = robot_model['joints']
+
         # TODO errors!
+
         for link_name in links:
             node = Node()
-            node.set_name(link_name)
-            self.nodes.update({link_name: node})
+            node.name = link_name
+            self.add_node(node)
         #print(self.nodes)
 
         for joint_name in joints:
             joint = Joint()
-            joint.set_name(joint_name)
+            joint.name = joint_name
+            joint_data = joints['joint']
+            joint_origin = joints_data['origin']
+            joint.parent_link = self.get_node(joint_data['parent'])
+            joint.child_link  = self.get_node(joint_data['child'])
+
+            Rb = euler_matrix(joint_origin['roll'], joint_origin['pitch'],
+                              joint_origin['yaw'], 'rxyz')
+
+            Pb = translation_matrix((joint_origin['x'], joint_origin['y'],
+                                     joint_origin['z']))
+
+            Hb = concatenate_matrices(Pb, Rb)
+            joint.Hb = Hb
+
+            if joint_data['type'] == 'fixed':
+                joint.type = "f"
+
+            if joint_data['type'] == 'revoute' or joint_data['type'] == 'continuous':
+                joint.type = "r"
+                if 'zero_state' in joint_data:
+                    joint.pos = joint_data['zero_state']
+
+                joint_axis = joints_data['axis']
+
+                joint.Hj = None          # Transformation by J
+                joint.Ha = None          # Transformation after J | equal to I in urdf
+
+
+
+
+
+
+                self.pos = 0
+                self.vel = 0
+                self.acc = 0
+                self.lim = self.Limits()
+
+
             self.nodes.update({link: node})
 
     def init_from_urdf2(self, urdf2):
