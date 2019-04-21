@@ -16,7 +16,7 @@ from math import pi
 from rik.parsers import urdf_to_model
 
 # https://github.com/ros/geometry/blob/indigo-devel/tf/src/tf/transformations.py
-# first character : rotations are applied to ‘s’tatic or ‘r’otating frame
+# first character : rotations are applied to 's'tatic or 'r'otating frame
 import tf.transformations as tf
 
 # just for pretty printing of parsed model
@@ -80,10 +80,8 @@ class Joint():
         self.type   = ""          # p - prismatic | r - revolute
                                   # fl - floating | f - fixed
 
-        self.parent_link  = ""
-        self.child_link   = ""
-        # self.joints_before = []
-        # self.joints_after  = []
+        self.parent_link = None
+        self.child_link  = None
 
         self.Hb = None          # Transformation before J
         self.Hj = None          # Transformation by J
@@ -169,6 +167,7 @@ class Robot():
         self.targets = {}                 # {"name" : ik_order, .. }
 
         self.log = log
+        self.pp = pprint.PrettyPrinter(indent=2)
 
     def add_node(self, node):
         self.nodes.update({node.name: node})
@@ -180,7 +179,7 @@ class Robot():
             return None
 
     def add_joint(self, joint):
-        pass
+        self.joints.update({joint.name: joint})
 
     def set_joints(self, joints_state):
         pass
@@ -191,10 +190,10 @@ class Robot():
     #   URDF uses a tree structure to represent robot kinematics, which does
     # not permit closed loops
     def init_from_urdf(self, urdf):
+
         robot_model = urdf_to_model(urdf)
-        if self.log is True:
-            pp = pprint.PrettyPrinter(indent=2)
-            pp.pprint(robot_model)
+
+        if self.log: self.pp.pprint(robot_model)
 
         links = robot_model['links']
         joints = robot_model['joints']
@@ -210,18 +209,24 @@ class Robot():
         for joint_name in joints:
             joint = Joint()
             joint.name = joint_name
-            joint_data = joints['joint']
-            joint_origin = joints_data['origin']
+            joint_data = joints[joint_name]
+            joint_origin = joint_data['origin']
+
             joint.parent_link = self.get_node(joint_data['parent'])
+            if self.log and joint.parent_link is None:
+                print("[RIK]: ", joint_name, " has no parent link")
+
             joint.child_link  = self.get_node(joint_data['child'])
+            if self.log and joint.child_link is None:
+                print("[RIK]: ", joint_name, " has no child link")
 
-            Rb = euler_matrix(joint_origin['roll'], joint_origin['pitch'],
-                              joint_origin['yaw'], 'rxyz')
+            Rb = tf.euler_matrix(joint_origin['roll'], joint_origin['pitch'],
+                                 joint_origin['yaw'], 'rxyz')
 
-            Pb = translation_matrix((joint_origin['x'], joint_origin['y'],
-                                     joint_origin['z']))
+            Pb = tf.translation_matrix((joint_origin['x'], joint_origin['y'],
+                                        joint_origin['z']))
 
-            Hb = concatenate_matrices(Pb, Rb)
+            Hb = tf.concatenate_matrices(Pb, Rb)
             joint.Hb = Hb
 
             if joint_data['type'] == 'fixed':
@@ -229,16 +234,14 @@ class Robot():
 
             if joint_data['type'] == 'revoute' or joint_data['type'] == 'continuous':
                 joint.type = "r"
+
                 if 'zero_state' in joint_data:
                     joint.pos = joint_data['zero_state']
 
-                joint_axis = joints_data['axis']
+                joint_axis = joint_data['axis']
 
                 joint.Hj = None          # Transformation by J
                 joint.Ha = None          # Transformation after J | equal to I in urdf
-
-
-
 
 
 
@@ -247,8 +250,14 @@ class Robot():
                 self.acc = 0
                 self.lim = self.Limits()
 
+            if joint_data['type'] == 'prismatic':
+                joint.type = "p"
 
-            self.nodes.update({link: node})
+
+            self.add_joint(joint)
+
+        if self.log: self.pp.pprint(self.nodes)
+        if self.log: self.pp.pprint(self.joints)
 
     def init_from_urdf2(self, urdf2):
         print(urdf2)
@@ -257,6 +266,9 @@ class Robot():
         print(sdf)
 
     def init_from_DH(self, dh):
+        print(dh)
+
+    def spin(self):
         pass
 
 
@@ -377,7 +389,3 @@ class Robot():
 #     #     return xyz, qtn, rpy, H
 #
 #     def spin(self):
-
-
-def hello():
-    print('hello_func')
