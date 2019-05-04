@@ -5,7 +5,7 @@
 
   <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find iiwa)/config/kuka_iiwa.rviz" required="true"/>-->
 
-  <node pkg="rik" type="rik_test_node.py" name="rik" output="screen">
+  <node pkg="rik" type="rik_node.py" name="rik" output="screen">
     <rosparam param="descriptions">
       [ { name: 't',  dtype: 'urdf', data: 'testy_description' },
         { name: 't2', dtype: 'urdf', data: 'testy2_description' } ]

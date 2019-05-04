@@ -65,8 +65,8 @@ def acc(state, targets):
 #                For Denavit-Hartenberg (DH) convention Hb is equal to I
 class Joint():
 
-    # Joint limits
     class Limits():
+
         def __init__(self):
             self.low = None
             self.upp = None
@@ -74,6 +74,13 @@ class Joint():
             self.acc = None
             self.dec = None
             self.eff = None
+
+    class Axis():
+        def __init__(self):
+            self.x = 0
+            self.y = 0
+            self.z = 1
+            self.
 
     def __init__(self):
         self.name   = ""
@@ -87,10 +94,24 @@ class Joint():
         self.Hj = None          # Transformation by J
         self.Ha = None          # Transformation after J | equal to I in urdf
 
-        self.pos = 0
-        self.vel = 0
-        self.acc = 0
-        self.lim = self.Limits()
+        self.pos  = 0
+        self.vel  = 0
+        self.acc  = 0
+        self.axis = self.Axis()
+        self.lim  = self.Limits()
+
+    def set_axis(self, x, y, z):
+        self.axis.x = x
+        self.axis.y = y
+        self.axis.z = z
+
+    def pos_is_valid(self, pos):
+        too_low = (self.lim.low is not None) and (pos < self.lim.low)
+        too_high = (self.lim.upp is not None) and (pos < self.lim.upp)
+        return not(too_low or too_high)
+
+    def set_pos(self, pos):
+        pass
 
 
 #   All pose, velocity, acceleration values for Target and Node classes are
@@ -204,7 +225,6 @@ class Robot():
             node = Node()
             node.name = link_name
             self.add_node(node)
-        #print(self.nodes)
 
         for joint_name in joints:
             joint = Joint()

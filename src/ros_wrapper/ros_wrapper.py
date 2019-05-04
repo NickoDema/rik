@@ -27,7 +27,7 @@ class RikRosWrapper():
     def __init__(self, description_param_name = '~descriptions'):
 
         rospy.init_node("rik")
-        robots = []
+        self.robots = []
 
         rospy.get_param('log', False)
 
@@ -46,7 +46,7 @@ class RikRosWrapper():
             R = rik.Robot(name, True)
             if dtype == 'urdf':
                 R.init_from_urdf(data)
-                robots.append(R)
+                self.robots.append(R)
             else:
                 rospy.logwarn('[RIK]: Solver does\'n support ', dtype,
                               'description type (for ', name, ' robot)')
