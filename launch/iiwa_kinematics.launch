@@ -12,7 +12,7 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find iiwa)/config/kuka_iiwa.rviz" required="true"/>-->
 
   <node pkg="iiwa" type="iiwa_node.py" name="iiwa" respawn="true" respawn_delay="20" output="screen">
-    <rosparam file="$(find iiwa)/config/iiwa_params.yaml" command="load"/>
+    <rosparam file="$(find iiwa)/params/iiwa_params.yaml" command="load"/>
   </node>
 
 </launch>

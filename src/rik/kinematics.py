@@ -21,22 +21,8 @@ import tf.transformations as tf
 
 # just for pretty printing of parsed model
 import pprint
+pp = pprint.PrettyPrinter(indent=2)
 #from terminaltables import SingleTable
-
-
-# class Transformation():
-#     class Translation():
-#         def __init__(self):
-#             self.x = 0
-#             self.y = 0
-#             self.z = 0
-#
-#     class Rotation():
-#         def __init__(self):
-#             self.x = 0
-#             self.y = 0
-#             self.z = 0
-#             self.w = 1
 
 
 def fk(state):
@@ -63,10 +49,17 @@ def acc(state, targets):
 #
 # Special cases: For URDF Ha is equal to I.
 #                For Denavit-Hartenberg (DH) convention Hb is equal to I
-class Joint():
+class Joint:
 
-    class Limits():
+    class Type:
+        REVOLUTE  = 0
+        PRISMATIC = 1
+        FIXED     = 2
+        FLOATING  = 3
+        PLANAR    = 4
 
+
+    class Limits:
         def __init__(self):
             self.low = None
             self.upp = None
@@ -75,40 +68,49 @@ class Joint():
             self.dec = None
             self.eff = None
 
-    class Axis():
+
+    class Axis:
         def __init__(self):
             self.x = 0
             self.y = 0
             self.z = 1
-            self.
+            #self.
+
 
     def __init__(self):
-        self.name   = ""
-        self.type   = ""          # p - prismatic | r - revolute
-                                  # fl - floating | f - fixed
+        self.name = None
+        self.type = None
 
         self.parent_link = None
         self.child_link  = None
 
         self.Hb = None          # Transformation before J
         self.Hj = None          # Transformation by J
-        self.Ha = None          # Transformation after J | equal to I in urdf
+        self.Ha = None          # Transformation after J (equal to I in urdf)
 
-        self.pos  = 0
-        self.vel  = 0
-        self.acc  = 0
+        self.pos  = 0.0
+        self.vel  = 0.0
+        self.acc  = 0.0
         self.axis = self.Axis()
         self.lim  = self.Limits()
+
 
     def set_axis(self, x, y, z):
         self.axis.x = x
         self.axis.y = y
         self.axis.z = z
 
-    def pos_is_valid(self, pos):
-        too_low = (self.lim.low is not None) and (pos < self.lim.low)
-        too_high = (self.lim.upp is not None) and (pos < self.lim.upp)
-        return not(too_low or too_high)
+        # rigth place to call function which calculate (generate) transformation Hj(th)
+
+
+    def pos_is_in_limit(self, pos):
+        if (self.lim == self.Type.REVOLUTE or self.lim == self.Type.PRISMATIC):
+            too_low = (self.lim.low is not None) and (pos < self.lim.low)
+            too_high = (self.lim.upp is not None) and (pos < self.lim.upp)
+            return not(too_low or too_high)
+        else:
+            return True
+
 
     def set_pos(self, pos):
         pass
@@ -116,7 +118,7 @@ class Joint():
 
 #   All pose, velocity, acceleration values for Target and Node classes are
 # expressed relative to the base coordinate system.
-class Target():
+class Target:
     def __init__(self):
         self.name = ""
         self.priority = 1               # priority
@@ -129,7 +131,7 @@ class Target():
 
 #   If the frame has no parent in a description (urdf for example) it will be
 # initialized as a fixed
-class Node():
+class Node:
 
     def __init__(self):
         self.name = ""
@@ -157,7 +159,7 @@ class Node():
 #   Branch object is a set consisted of nodes. Branch starts and ends by nodes
 # with more then one parents or childs or by nodes which has no parent or child.
 #   Branches with common node is siblings.
-class Branch():
+class Branch:
     def __init__(self):
         self.nodes = {}
         self.siblings = {}
@@ -170,16 +172,14 @@ class Branch():
         pass
 
 #   If two or more siblings has common child frame they form a Loop.
-class Loop():
+class Loop:
     def __init__(self):
         pass
 
 # Class Robot stores full robot state
-class Robot():
-
+class Robot:
     def __init__(self, name = None, log = False):
         self.name = name
-        self.inited = False
         # self.joint_num = 0
         self.frame_num = 0
 
@@ -188,22 +188,26 @@ class Robot():
         self.targets = {}                 # {"name" : ik_order, .. }
 
         self.log = log
-        self.pp = pprint.PrettyPrinter(indent=2)
+
 
     def add_node(self, node):
         self.nodes.update({node.name: node})
 
+
     def get_node(self, name):
-        if name in self.nodes:
+        try:
             return self.nodes[name]
-        else:
+        except:
             return None
+
 
     def add_joint(self, joint):
         self.joints.update({joint.name: joint})
 
+
     def set_joints(self, joints_state):
         pass
+
 
     def add_target(self, target):
         pass
@@ -214,7 +218,7 @@ class Robot():
 
         robot_model = urdf_to_model(urdf)
 
-        if self.log: self.pp.pprint(robot_model)
+        if self.log: pp.pprint(robot_model)
 
         links = robot_model['links']
         joints = robot_model['joints']
@@ -230,15 +234,16 @@ class Robot():
             joint = Joint()
             joint.name = joint_name
             joint_data = joints[joint_name]
+            urdf_joint_type = joint_data['type']
             joint_origin = joint_data['origin']
 
             joint.parent_link = self.get_node(joint_data['parent'])
             if self.log and joint.parent_link is None:
-                print("[RIK]: ", joint_name, " has no parent link")
+                print("[RIK | log]: ", joint_name, " joint has no parent link")
 
             joint.child_link  = self.get_node(joint_data['child'])
             if self.log and joint.child_link is None:
-                print("[RIK]: ", joint_name, " has no child link")
+                print("[RIK | log]: ", joint_name, " joint has no child link")
 
             Rb = tf.euler_matrix(joint_origin['roll'], joint_origin['pitch'],
                                  joint_origin['yaw'], 'rxyz')
@@ -246,38 +251,75 @@ class Robot():
             Pb = tf.translation_matrix((joint_origin['x'], joint_origin['y'],
                                         joint_origin['z']))
 
-            Hb = tf.concatenate_matrices(Pb, Rb)
-            joint.Hb = Hb
+            joint.Hb = tf.concatenate_matrices(Pb, Rb)
 
-            if joint_data['type'] == 'fixed':
-                joint.type = "f"
+            if (urdf_joint_type != 'continuous' or urdf_joint_type != 'revoute' or
+                urdf_joint_type != 'prismatic'  or urdf_joint_type != 'fixed'):
+                print("[RIK | err]: ", urdf_joint_type, " joint type is not supported by RIK.")
+                urdf_joint_type = 'fixed'
 
-            if joint_data['type'] == 'revoute' or joint_data['type'] == 'continuous':
-                joint.type = "r"
+            if urdf_joint_type == 'fixed':
+                joint.type = Joint.Type.FIXED
+                joint.Hj = None
+                joint.Ha = None
+
+            if urdf_joint_type == 'revoute' or urdf_joint_type == 'continuous':
+                joint.type = Joint.Type.REVOLUTE
+
+            if urdf_joint_type == 'prismatic':
+                joint.type = Joint.Type.PRISMATIC
+
+            if (urdf_joint_type == 'continuous' or
+                urdf_joint_type == 'revoute'    or
+                urdf_joint_type == 'prismatic'):
+
+                if 'limit' in joint_data:
+                    urdf_joint_limits = joint_data['limit']
+
+                    joint.lim.vel = urdf_joint_limits['velocity']
+                    joint.lim.eff = urdf_joint_limits['effort']
+
+                    if 'acceleration' in urdf_joint_limits:
+                        joint.lim.acc = urdf_joint_limits['acceleration']
+
+                        if 'deceleration' in urdf_joint_limits:
+                            joint.lim.dec = urdf_joint_limits['deceleration']
+                        else:
+                            joint.lim.dec = urdf_joint_limits['acceleration']
+
+                    if urdf_joint_type == 'revoute' or urdf_joint_type == 'prismatic':
+                        joint.lim.low = urdf_joint_limits['lower']
+                        joint.lim.upp = urdf_joint_limits['upper']
+                else:
+                    if self.log:
+                        print("[RIK | log]: ", joint_name, " joint limits is not set in URDF")
 
                 if 'zero_state' in joint_data:
                     joint.pos = joint_data['zero_state']
+                else:
+                    joint.pos = 0.0
 
                 joint_axis = joint_data['axis']
+                joint.set_axis(joint_axis['x'], joint_axis['y'], joint_axis['z'])
 
-                joint.Hj = None          # Transformation by J
-                joint.Ha = None          # Transformation after J | equal to I in urdf
+                # here is the rigth place to calculate (generate) transformation Hj(th)
+                # first time
+
+                joint.Hj = None
+
+
+                joint.Ha = None
+                joint.vel = 0.0
+                joint.acc = 0.0
 
 
 
-                self.pos = 0
-                self.vel = 0
-                self.acc = 0
-                self.lim = self.Limits()
-
-            if joint_data['type'] == 'prismatic':
-                joint.type = "p"
 
 
             self.add_joint(joint)
 
-        if self.log: self.pp.pprint(self.nodes)
-        if self.log: self.pp.pprint(self.joints)
+        if self.log: pp.pprint(self.nodes)
+        if self.log: pp.pprint(self.joints)
 
     def init_from_urdf2(self, urdf2):
         print(urdf2)
