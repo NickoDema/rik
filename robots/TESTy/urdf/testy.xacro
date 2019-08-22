@@ -1,5 +1,0 @@
-<?xml version="1.0" ?>
-<robot name="testy" xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:include filename="$(find rik)/robots/TESTy/urdf/testy_macro.xacro"/>
-  <xacro:testy/>
-</robot>

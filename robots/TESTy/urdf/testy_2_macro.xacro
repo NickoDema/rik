@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:macro name="testy_2">
+
+    <!-- link list -->
+    <link name="testy_2_base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/link.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_j1_l">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/joint.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/joint.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_l1">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/link.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_j2_l">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/joint.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/joint.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_l2">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/link.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_j3_l">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/joint.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/joint.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_l3">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/link.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_j4_l">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/joint.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/joint.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_l4">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/link.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_j5_l">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/joint.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/joint.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_l5">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/link.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_j6_l">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/joint.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/joint.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_l6">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/link.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_j7_l">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/joint.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/joint.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_l7">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/link.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_j8_l">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/joint.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/joint.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_l8">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/link.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_j9_l">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/joint.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/joint.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_l9">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/visual/tool_0.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://rik/robots/TESTy/meshes/collision/tool_0.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="testy_2_tool_0"/>
+
+    <!-- <link name="tool0" />  -->
+    <!-- end of link list -->
+
+
+
+    <!-- ################################################################# -->
+    <!-- joint list -->
+    <joint name="testy_2_base_link->testy_2_j1_l" type="revolute">
+      <origin xyz="0 0 0.26" rpy="0 0 0" />
+      <parent link="testy_2_base_link" />
+      <child link="testy_2_j1_l" />
+      <axis xyz="0 0 1" />
+      <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
+    </joint>
+
+    <joint name="testy_2_j1_l->testy_2_l1" type="fixed">
+      <origin xyz="0 0 0.06" rpy="0 0 0"/>
+      <parent link="testy_2_j1_l"/>
+      <child link="testy_2_l1"/>
+    </joint>
+
+    <joint name="testy_2_l1->testy_2_j2_l" type="revolute">
+      <origin xyz="0 0 0.26" rpy="-${pi/2} 0 0" />
+      <parent link="testy_2_l1" />
+      <child link="testy_2_j2_l" />
+      <axis xyz="0 0 1" />
+      <limit lower="-2.0942" upper="2.0942" effort="9" velocity="1.4834" />
+    </joint>
+
+    <joint name="testy_2_j2_l-testy_2_l2" type="fixed">
+      <origin xyz="0 -0.06 0" rpy="${pi/2} 0 0"/>
+      <parent link="testy_2_j2_l"/>
+      <child link="testy_2_l2"/>
+    </joint>
+
+    <joint name="testy_2_l2->testy_2_j3_l" type="revolute">
+      <origin xyz="0 0 0.26" rpy="0 0 0" />
+      <parent link="testy_2_l2" />
+      <child link="testy_2_j3_l" />
+      <axis xyz="0 0 1" />
+      <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
+    </joint>
+
+    <joint name="testy_2_j3_l-testy_2_l3" type="fixed">
+      <origin xyz="0 0 0.06" rpy="0 0 0"/>
+      <parent link="testy_2_j3_l"/>
+      <child link="testy_2_l3"/>
+    </joint>
+
+    <joint name="testy_2_l3->testy_2_j4_l" type="revolute">
+      <origin xyz="0 0 0.26" rpy="-${pi/2} 0 0" />
+      <parent link="testy_2_l3" />
+      <child link="testy_2_j4_l" />
+      <axis xyz="0 0 1" />
+      <limit lower="-2.0942" upper="2.0942" effort="9" velocity="1.4834" />
+    </joint>
+
+    <joint name="testy_2_j4_l-testy_2_l4" type="fixed">
+      <origin xyz="0 -0.06 0" rpy="${pi/2} 0 0"/>
+      <parent link="testy_2_j4_l"/>
+      <child link="testy_2_l4"/>
+    </joint>
+
+    <joint name="testy_2_l4->testy_2_j5_l" type="revolute">
+      <origin xyz="0 0 0.26" rpy="0 0 0" />
+      <parent link="testy_2_l4" />
+      <child link="testy_2_j5_l" />
+      <axis xyz="0 0 1" />
+      <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
+    </joint>
+
+    <joint name="testy_2_j5_l-testy_2_l5" type="fixed">
+      <origin xyz="0 0 0.06" rpy="0 0 0"/>
+      <parent link="testy_2_j5_l"/>
+      <child link="testy_2_l5"/>
+    </joint>
+
+    <joint name="testy_2_l5->testy_2_j6_l" type="revolute">
+      <origin xyz="0 0 0.26" rpy="-${pi/2} 0 0" />
+      <parent link="testy_2_l5" />
+      <child link="testy_2_j6_l" />
+      <axis xyz="0 0 1" />
+      <limit lower="-2.0942" upper="2.0942" effort="9" velocity="1.4834" />
+    </joint>
+
+    <joint name="testy_2_j6_l-testy_2_l6" type="fixed">
+      <origin xyz="0 -0.06 0" rpy="${pi/2} 0 0"/>
+      <parent link="testy_2_j6_l"/>
+      <child link="testy_2_l6"/>
+    </joint>
+
+    <joint name="testy_2_l6->testy_2_j7_l" type="revolute">
+      <origin xyz="0 0 0.26" rpy="0 0 0" />
+      <parent link="testy_2_l6" />
+      <child link="testy_2_j7_l" />
+      <axis xyz="0 0 1" />
+      <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
+    </joint>
+
+    <joint name="testy_2_j7_l-testy_2_l7" type="fixed">
+      <origin xyz="0 0 0.06" rpy="0 0 0"/>
+      <parent link="testy_2_j7_l"/>
+      <child link="testy_2_l7"/>
+    </joint>
+
+    <joint name="testy_2_l7->testy_2_j8_l" type="revolute">
+      <origin xyz="0 0 0.26" rpy="-${pi/2} 0 0" />
+      <parent link="testy_2_l7" />
+      <child link="testy_2_j8_l" />
+      <axis xyz="0 0 1" />
+      <limit lower="-2.0942" upper="2.0942" effort="9" velocity="1.4834" />
+    </joint>
+
+    <joint name="testy_2_j8_l-testy_2_l8" type="fixed">
+      <origin xyz="0 -0.06 0" rpy="${pi/2} 0 0"/>
+      <parent link="testy_2_j8_l"/>
+      <child link="testy_2_l8"/>
+    </joint>
+
+    <joint name="testy_2_l8->testy_2_j9_l" type="revolute">
+      <origin xyz="0 0 0.26" rpy="0 0 0" />
+      <parent link="testy_2_l8" />
+      <child link="testy_2_j9_l" />
+      <axis xyz="1 0 1" />
+      <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
+    </joint>
+
+    <joint name="testy_2_j9_l-testy_2_l9" type="fixed">
+      <origin xyz="0 0 0.06" rpy="0 0 0"/>
+      <parent link="testy_2_j9_l"/>
+      <child link="testy_2_l9"/>
+    </joint>
+
+    <joint name="testy_2_l9->testy_2_tool_0" type="fixed">
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <parent link="testy_2_l9"/>
+      <child link="testy_2_tool_0"/>
+    </joint>
+
+    <!-- ROS testy_2_base_link to KUKA $ROBROOT coordinate system transform -->
+    <link name="base" />
+    <joint name="testy_2_base_link->base" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="testy_2_base_link"/>
+      <child link="base"/>
+    </joint>
+
+    <link name="base_link" />
+    <joint name="base_link->testy_2_base_link" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="testy_2_base_link"/>
+      <child link="base_link"/>
+    </joint>
+
+  </xacro:macro>
+</robot>

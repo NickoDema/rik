@@ -81,12 +81,14 @@ class Joint:
         self.name = None
         self.type = None
 
-        self.parent_link = None
-        self.child_link  = None
+        self.parent_node = None
+        self.child_node  = None
 
         self.Hb = None          # Transformation before J
         self.Hj = None          # Transformation by J
         self.Ha = None          # Transformation after J (equal to I in urdf)
+
+        self.H = None           # hold H after FK to do not calc it again for the same pos
 
         self.pos  = 0.0
         self.vel  = 0.0
@@ -141,8 +143,11 @@ class Node:
         self.pos = None
         self.vel = None
         self.acc = None
-        self.parent_frames = []
-        self.child_frames  = []
+
+        self.Ho = None           # hold Ho after IK | Ho - transform to node in
+
+        # self.parent_nodes = []
+        # self.child_nodes  = []
 
     def set_fixed(self):
         self.type = 1
@@ -205,6 +210,13 @@ class Robot:
         self.joints.update({joint.name: joint})
 
 
+    def get_joint(self, parent_node, child_node):
+        for joint in self.joints.values():
+            if (joint.parent_node == parent_node) and (joint.child_node == parent_node):
+                return joint
+        return None
+
+
     def set_joints(self, joints_state):
         pass
 
@@ -237,12 +249,12 @@ class Robot:
             urdf_joint_type = joint_data['type']
             joint_origin = joint_data['origin']
 
-            joint.parent_link = self.get_node(joint_data['parent'])
-            if self.log and joint.parent_link is None:
+            joint.parent_node = self.get_node(joint_data['parent'])
+            if self.log and joint.parent_node is None:
                 print("[RIK | log]: ", joint_name, " joint has no parent link")
 
-            joint.child_link  = self.get_node(joint_data['child'])
-            if self.log and joint.child_link is None:
+            joint.child_node  = self.get_node(joint_data['child'])
+            if self.log and joint.child_node is None:
                 print("[RIK | log]: ", joint_name, " joint has no child link")
 
             Rb = tf.euler_matrix(joint_origin['roll'], joint_origin['pitch'],
@@ -307,7 +319,6 @@ class Robot:
 
                 joint.Hj = None
 
-
                 joint.Ha = None
                 joint.vel = 0.0
                 joint.acc = 0.0
@@ -329,6 +340,9 @@ class Robot:
 
     def init_from_DH(self, dh):
         print(dh)
+
+    def fk(self):
+        pass
 
     def spin(self):
         pass

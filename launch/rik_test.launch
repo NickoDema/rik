@@ -1,19 +1,22 @@
 <launch>
 
-  <param name="testy_description"  command="$(find xacro)/xacro --inorder '$(find rik)/robots/TESTy/urdf/testy.xacro'" />
-  <param name="testy2_description" command="$(find xacro)/xacro --inorder '$(find rik)/robots/TESTy/urdf/testy.xacro'" />
+  <param name="testy_1_description"  command="$(find xacro)/xacro --inorder '$(find rik)/robots/TESTy/urdf/testy_1.xacro'" />
+  <param name="testy_2_description" command="$(find xacro)/xacro --inorder '$(find rik)/robots/TESTy/urdf/testy_2.xacro'" />
 
   <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find iiwa)/config/kuka_iiwa.rviz" required="true"/>-->
 
   <node pkg="rik" type="rik_node.py" name="rik" output="screen">
     <rosparam param="descriptions">
-      [ { name: 't',  dtype: 'urdf', data: 'testy_description' },
-        { name: 't2', dtype: 'urdf', data: 'testy2_description' } ]
+      [ { name: 't1',  dtype: 'urdf', data: 'testy_1_description' },
+        { name: 't2', dtype: 'urdf', data: 'testy_2_description' } ]
     </rosparam>
     <!-- <rosparam file="$(find rik)/config/robot_descriptions.yaml" command="load" /> -->
     <rosparam file="$(find rik)/params/rik.yaml" command="load" />
     <!-- <param name="use_gui" value="true" /> -->
     <!-- <rosparam param="source_list">[arm_state]</rosparam> -->
   </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="tf_to_t1_base_frame"  args="0.5 0 0 1 0 0 0 /map /testy_1_base_link 25" />
+  <node pkg="tf" type="static_transform_publisher" name="tf_to_t2_base_frame" args="-0.5 0 0 1 0 0 0 /map /testy_2_base_link 25" />
 
 </launch>

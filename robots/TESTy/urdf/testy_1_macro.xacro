@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:macro name="testy">
+  <xacro:macro name="testy_1">
 
     <!-- link list -->
-    <link name="testy_base_link">
+    <link name="testy_1_base_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -18,7 +18,7 @@
       </collision>
     </link>
 
-    <link name="testy_j1_l">
+    <link name="testy_1_j1_l">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -33,7 +33,7 @@
       </collision>
     </link>
 
-    <link name="testy_l1">
+    <link name="testy_1_l1">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -48,7 +48,7 @@
       </collision>
     </link>
 
-    <link name="testy_j2_l">
+    <link name="testy_1_j2_l">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -63,7 +63,7 @@
       </collision>
     </link>
 
-    <link name="testy_l2">
+    <link name="testy_1_l2">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -78,7 +78,7 @@
       </collision>
     </link>
 
-    <link name="testy_j3_l">
+    <link name="testy_1_j3_l">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -93,7 +93,7 @@
       </collision>
     </link>
 
-    <link name="testy_l3">
+    <link name="testy_1_l3">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -108,7 +108,7 @@
       </collision>
     </link>
 
-    <link name="testy_j4_l">
+    <link name="testy_1_j4_l">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -123,7 +123,7 @@
       </collision>
     </link>
 
-    <link name="testy_l4">
+    <link name="testy_1_l4">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -138,7 +138,7 @@
       </collision>
     </link>
 
-    <link name="testy_j5_l">
+    <link name="testy_1_j5_l">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -153,7 +153,7 @@
       </collision>
     </link>
 
-    <link name="testy_l5">
+    <link name="testy_1_l5">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -168,7 +168,7 @@
       </collision>
     </link>
 
-    <link name="testy_j6_l">
+    <link name="testy_1_j6_l">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -183,7 +183,7 @@
       </collision>
     </link>
 
-    <link name="testy_l6">
+    <link name="testy_1_l6">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -198,7 +198,7 @@
       </collision>
     </link>
 
-    <link name="testy_j7_l">
+    <link name="testy_1_j7_l">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -213,7 +213,7 @@
       </collision>
     </link>
 
-    <link name="testy_l7">
+    <link name="testy_1_l7">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -228,7 +228,7 @@
       </collision>
     </link>
 
-    <link name="testy_j8_l">
+    <link name="testy_1_j8_l">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -243,7 +243,7 @@
       </collision>
     </link>
 
-    <link name="testy_l8">
+    <link name="testy_1_l8">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -258,7 +258,7 @@
       </collision>
     </link>
 
-    <link name="testy_j9_l">
+    <link name="testy_1_j9_l">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -273,7 +273,7 @@
       </collision>
     </link>
 
-    <link name="testy_l9">
+    <link name="testy_1_l9">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -288,7 +288,7 @@
       </collision>
     </link>
 
-    <link name="testy_tool_0"/>
+    <link name="testy_1_tool_0"/>
 
     <!-- <link name="tool0" />  -->
     <!-- end of link list -->
@@ -297,150 +297,150 @@
 
     <!-- ################################################################# -->
     <!-- joint list -->
-    <joint name="testy_base_link->testy_j1_l" type="revolute">
+    <joint name="testy_1_base_link->testy_1_j1_l" type="revolute">
       <origin xyz="0 0 0.26" rpy="0 0 0" />
-      <parent link="testy_base_link" />
-      <child link="testy_j1_l" />
+      <parent link="testy_1_base_link" />
+      <child link="testy_1_j1_l" />
       <axis xyz="0 0 1" />
       <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
     </joint>
 
-    <joint name="testy_j1_l->testy_l1" type="fixed">
+    <joint name="testy_1_j1_l->testy_1_l1" type="fixed">
       <origin xyz="0 0 0.06" rpy="0 0 0"/>
-      <parent link="testy_j1_l"/>
-      <child link="testy_l1"/>
+      <parent link="testy_1_j1_l"/>
+      <child link="testy_1_l1"/>
     </joint>
 
-    <joint name="testy_l1->testy_j2_l" type="revolute">
+    <joint name="testy_1_l1->testy_1_j2_l" type="revolute">
       <origin xyz="0 0 0.26" rpy="-${pi/2} 0 0" />
-      <parent link="testy_l1" />
-      <child link="testy_j2_l" />
+      <parent link="testy_1_l1" />
+      <child link="testy_1_j2_l" />
       <axis xyz="0 0 1" />
       <limit lower="-2.0942" upper="2.0942" effort="9" velocity="1.4834" />
     </joint>
 
-    <joint name="testy_j2_l-testy_l2" type="fixed">
+    <joint name="testy_1_j2_l-testy_1_l2" type="fixed">
       <origin xyz="0 -0.06 0" rpy="${pi/2} 0 0"/>
-      <parent link="testy_j2_l"/>
-      <child link="testy_l2"/>
+      <parent link="testy_1_j2_l"/>
+      <child link="testy_1_l2"/>
     </joint>
 
-    <joint name="testy_l2->testy_j3_l" type="revolute">
+    <joint name="testy_1_l2->testy_1_j3_l" type="revolute">
       <origin xyz="0 0 0.26" rpy="0 0 0" />
-      <parent link="testy_l2" />
-      <child link="testy_j3_l" />
+      <parent link="testy_1_l2" />
+      <child link="testy_1_j3_l" />
       <axis xyz="0 0 1" />
       <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
     </joint>
 
-    <joint name="testy_j3_l-testy_l3" type="fixed">
+    <joint name="testy_1_j3_l-testy_1_l3" type="fixed">
       <origin xyz="0 0 0.06" rpy="0 0 0"/>
-      <parent link="testy_j3_l"/>
-      <child link="testy_l3"/>
+      <parent link="testy_1_j3_l"/>
+      <child link="testy_1_l3"/>
     </joint>
 
-    <joint name="testy_l3->testy_j4_l" type="revolute">
+    <joint name="testy_1_l3->testy_1_j4_l" type="revolute">
       <origin xyz="0 0 0.26" rpy="-${pi/2} 0 0" />
-      <parent link="testy_l3" />
-      <child link="testy_j4_l" />
+      <parent link="testy_1_l3" />
+      <child link="testy_1_j4_l" />
       <axis xyz="0 0 1" />
       <limit lower="-2.0942" upper="2.0942" effort="9" velocity="1.4834" />
     </joint>
 
-    <joint name="testy_j4_l-testy_l4" type="fixed">
+    <joint name="testy_1_j4_l-testy_1_l4" type="fixed">
       <origin xyz="0 -0.06 0" rpy="${pi/2} 0 0"/>
-      <parent link="testy_j4_l"/>
-      <child link="testy_l4"/>
+      <parent link="testy_1_j4_l"/>
+      <child link="testy_1_l4"/>
     </joint>
 
-    <joint name="testy_l4->testy_j5_l" type="revolute">
+    <joint name="testy_1_l4->testy_1_j5_l" type="revolute">
       <origin xyz="0 0 0.26" rpy="0 0 0" />
-      <parent link="testy_l4" />
-      <child link="testy_j5_l" />
+      <parent link="testy_1_l4" />
+      <child link="testy_1_j5_l" />
       <axis xyz="0 0 1" />
       <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
     </joint>
 
-    <joint name="testy_j5_l-testy_l5" type="fixed">
+    <joint name="testy_1_j5_l-testy_1_l5" type="fixed">
       <origin xyz="0 0 0.06" rpy="0 0 0"/>
-      <parent link="testy_j5_l"/>
-      <child link="testy_l5"/>
+      <parent link="testy_1_j5_l"/>
+      <child link="testy_1_l5"/>
     </joint>
 
-    <joint name="testy_l5->testy_j6_l" type="revolute">
+    <joint name="testy_1_l5->testy_1_j6_l" type="revolute">
       <origin xyz="0 0 0.26" rpy="-${pi/2} 0 0" />
-      <parent link="testy_l5" />
-      <child link="testy_j6_l" />
+      <parent link="testy_1_l5" />
+      <child link="testy_1_j6_l" />
       <axis xyz="0 0 1" />
       <limit lower="-2.0942" upper="2.0942" effort="9" velocity="1.4834" />
     </joint>
 
-    <joint name="testy_j6_l-testy_l6" type="fixed">
+    <joint name="testy_1_j6_l-testy_1_l6" type="fixed">
       <origin xyz="0 -0.06 0" rpy="${pi/2} 0 0"/>
-      <parent link="testy_j6_l"/>
-      <child link="testy_l6"/>
+      <parent link="testy_1_j6_l"/>
+      <child link="testy_1_l6"/>
     </joint>
 
-    <joint name="testy_l6->testy_j7_l" type="revolute">
+    <joint name="testy_1_l6->testy_1_j7_l" type="revolute">
       <origin xyz="0 0 0.26" rpy="0 0 0" />
-      <parent link="testy_l6" />
-      <child link="testy_j7_l" />
+      <parent link="testy_1_l6" />
+      <child link="testy_1_j7_l" />
       <axis xyz="0 0 1" />
       <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
     </joint>
 
-    <joint name="testy_j7_l-testy_l7" type="fixed">
+    <joint name="testy_1_j7_l-testy_1_l7" type="fixed">
       <origin xyz="0 0 0.06" rpy="0 0 0"/>
-      <parent link="testy_j7_l"/>
-      <child link="testy_l7"/>
+      <parent link="testy_1_j7_l"/>
+      <child link="testy_1_l7"/>
     </joint>
 
-    <joint name="testy_l7->testy_j8_l" type="revolute">
+    <joint name="testy_1_l7->testy_1_j8_l" type="revolute">
       <origin xyz="0 0 0.26" rpy="-${pi/2} 0 0" />
-      <parent link="testy_l7" />
-      <child link="testy_j8_l" />
+      <parent link="testy_1_l7" />
+      <child link="testy_1_j8_l" />
       <axis xyz="0 0 1" />
       <limit lower="-2.0942" upper="2.0942" effort="9" velocity="1.4834" />
     </joint>
 
-    <joint name="testy_j8_l-testy_l8" type="fixed">
+    <joint name="testy_1_j8_l-testy_1_l8" type="fixed">
       <origin xyz="0 -0.06 0" rpy="${pi/2} 0 0"/>
-      <parent link="testy_j8_l"/>
-      <child link="testy_l8"/>
+      <parent link="testy_1_j8_l"/>
+      <child link="testy_1_l8"/>
     </joint>
 
-    <joint name="testy_l8->testy_j9_l" type="revolute">
+    <joint name="testy_1_l8->testy_1_j9_l" type="revolute">
       <origin xyz="0 0 0.26" rpy="0 0 0" />
-      <parent link="testy_l8" />
-      <child link="testy_j9_l" />
-      <axis xyz="0 0 1" />
+      <parent link="testy_1_l8" />
+      <child link="testy_1_j9_l" />
+      <axis xyz="1 0 1" />
       <limit lower="-2.9668" upper="2.9668" effort="10" velocity="1.4834" />
     </joint>
 
-    <joint name="testy_j9_l-testy_l9" type="fixed">
+    <joint name="testy_1_j9_l-testy_1_l9" type="fixed">
       <origin xyz="0 0 0.06" rpy="0 0 0"/>
-      <parent link="testy_j9_l"/>
-      <child link="testy_l9"/>
+      <parent link="testy_1_j9_l"/>
+      <child link="testy_1_l9"/>
     </joint>
 
-    <joint name="testy_l9->testy_tool_0" type="fixed">
+    <joint name="testy_1_l9->testy_1_tool_0" type="fixed">
       <origin xyz="0 0 0.2" rpy="0 0 0"/>
-      <parent link="testy_l9"/>
-      <child link="testy_tool_0"/>
+      <parent link="testy_1_l9"/>
+      <child link="testy_1_tool_0"/>
     </joint>
 
-    <!-- ROS testy_base_link to KUKA $ROBROOT coordinate system transform -->
+    <!-- ROS testy_1_base_link to KUKA $ROBROOT coordinate system transform -->
     <link name="base" />
-    <joint name="testy_base_link->base" type="fixed">
+    <joint name="testy_1_base_link->base" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <parent link="testy_base_link"/>
+      <parent link="testy_1_base_link"/>
       <child link="base"/>
     </joint>
 
     <link name="base_link" />
-    <joint name="base_link->testy_base_link" type="fixed">
+    <joint name="base_link->testy_1_base_link" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <parent link="testy_base_link"/>
+      <parent link="testy_1_base_link"/>
       <child link="base_link"/>
     </joint>
 
