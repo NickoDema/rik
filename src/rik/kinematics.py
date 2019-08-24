@@ -70,10 +70,10 @@ class Joint:
 
 
     class Axis:
-        def __init__(self):
-            self.x = 0
-            self.y = 0
-            self.z = 1
+        def __init__(self, x, y, z):
+            self.x = x
+            self.y = y
+            self.z = z
             #self.
 
 
@@ -90,10 +90,12 @@ class Joint:
 
         self.H = None           # hold H after FK to do not calc it again for the same pos
 
-        self.pos  = 0.0
-        self.vel  = 0.0
-        self.acc  = 0.0
-        self.axis = self.Axis()
+        self.pos = 0.0
+        self.vel = 0.0
+        self.acc = 0.0
+        self.eff = 0.0
+
+        self.axis = self.Axis(0, 0, 1)
         self.lim  = self.Limits()
 
 
@@ -117,6 +119,23 @@ class Joint:
     def set_pos(self, pos):
         pass
 
+    def is_revolute(self):
+        if self.type == Joint.Type.REVOLUTE:
+            return True
+        else:
+            return False
+
+    def is_prismatic(self):
+        if self.type == Joint.Type.PRISMATIC:
+            return True
+        else:
+            return False
+
+    def is_fixed(self):
+        if self.type == Joint.Type.FIXED:
+            return True
+        else:
+            return False
 
 #   All pose, velocity, acceleration values for Target and Node classes are
 # expressed relative to the base coordinate system.
@@ -183,6 +202,11 @@ class Loop:
 
 # Class Robot stores full robot state
 class Robot:
+
+    class State:
+        def __init__(self):
+            self.
+
     def __init__(self, name = None, log = False):
         self.name = name
         # self.joint_num = 0
@@ -315,17 +339,13 @@ class Robot:
                 joint.set_axis(joint_axis['x'], joint_axis['y'], joint_axis['z'])
 
                 # here is the rigth place to calculate (generate) transformation Hj(th)
-                # first time
+                # first time or not
 
                 joint.Hj = None
 
                 joint.Ha = None
                 joint.vel = 0.0
                 joint.acc = 0.0
-
-
-
-
 
             self.add_joint(joint)
 
@@ -342,7 +362,21 @@ class Robot:
         print(dh)
 
     def fk(self):
-        pass
+        for joint in self.joints.values():
+            if joint.is_revolute():
+                Rj = tf.euler_matrix(joint.pos, joint.pos, joint.pos, 'sxyz')
+                joint.Hj = tf.concatenate_matrices(joint.Hb, Rj)
+
+            elif joint.is_prismatic():
+                Pj = tf.translation_matrix(joint.pos, joint.pos, joint.pos)
+                joint.Hj = tf.concatenate_matrices(joint.Hb, Pj)
+
+            # TODO: add FLOATING and PLANAR cases
+
+            else:
+                joint.Hj = joint.Hb
+
+
 
     def spin(self):
         pass
